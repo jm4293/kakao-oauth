@@ -10,34 +10,27 @@ function Redirect() {
     let params = new URL(href).searchParams;
     let code = params.get("code");
 
-    console.log(1)
     useEffect(() => {
         async function token() {
-            await axios.post('http://localhost:8000/kakaotoken', {
-                    code: code
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json"
+            await axios.get('http://localhost:8000/accesstoken', {
+                    params:{
+                        code: code
                     }
                 }
             )
-                .then((result) =>{
-                    console.log("result ", result.data);
+                .then((result) => {
+                    console.log(result.data);
                     sessionStorage.setItem("Login", result.data)
                     alert("카카오 로그인 성공")
-                    navigate('/');
+                    navigate('/profile');
                 })
-                .catch((error) =>{
-                    console.log("error ", error);
+                .catch((error) => {
+                    console.log("Redirect error ", error);
                     alert("카카오 로그인 실패")
                     navigate('/');
                 })
-
         }
         token();
-
-        console.log(2)
     },)
 
     return (
