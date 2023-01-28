@@ -6,7 +6,7 @@ import Home from "./Components/Home/Home";
 import Redirect from "./Components/Kakao/Redirect";
 import Profile from "./Components/Profile";
 import Chatting from "./Components/Chatting";
-import Logout from "./Components/Logout";
+import Logout from "./Components/Account/Logout";
 import Navbar from "./Components/Home/Navbar";
 
 function App() {
@@ -34,10 +34,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Frame = styled.div`
-  width: 40vw;
-  min-width: 600px;
+  width: 60vw;
+  //min-width: 600px;
   height: 100vh;
   margin: auto;
+
+  @media screen and (max-width: 1200px){
+    width: 90vw;
+  }
 `;
 
 export default App;

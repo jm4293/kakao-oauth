@@ -1,4 +1,4 @@
-import {KAKAO_AUTH_URL} from "./Kakao/OAuth";
+import {KAKAO_AUTH_URL} from "../Kakao/OAuth";
 import React from "react";
 import styled from "styled-components";
 

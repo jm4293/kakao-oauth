@@ -19,7 +19,6 @@ function Redirect() {
                 }
             )
                 .then((result) => {
-                    console.log(result.data);
                     sessionStorage.setItem("Login", result.data)
                     alert("카카오 로그인 성공")
                     navigate('/profile');
