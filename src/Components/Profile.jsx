@@ -1,25 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {useDispatch} from "react-redux";
-import {changeIsLogin} from "../store/store";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsLogin, setName, setImg} from "../store/store";
 
 function Profile() {
-    const [nickName, setNickName] = useState("");
-    const [profileImg, setProfileImg] = useState("");
+    let name = useSelector((state) => {
+        return state.profile.name;
+    })
 
+    let img = useSelector((state) => {
+        return state.profile.img;
+    })
     let dispatch = useDispatch();
 
     useEffect(() => {
-        sessionStorage.getItem("Login") === "4293" ? dispatch(changeIsLogin(true)) : dispatch(changeIsLogin(false));
+        sessionStorage.getItem("Login") === "4293" ? dispatch(setIsLogin(true)) : dispatch(setIsLogin(false));
     }, [])
 
     useEffect(() => {
         async function profile() {
             await axios.get('http://localhost:8000/profile')
                 .then((result) => {
-                    setNickName(result.data.nickName);
-                    setProfileImg(result.data.profileImageURL);
+                    dispatch(setName(result.data.nickName));
+                    dispatch(setImg(result.data.profileImageURL));
                 })
                 .catch((error) => {
                     console.log("profile error ", error)
@@ -45,10 +49,12 @@ function Profile() {
 
     return (
         <Frame>
-            <h1>Profile</h1>
+            <h1 style={{borderBottom: "1px solid rgb(222, 222, 222)"}}>Profile</h1>
             <User>
-                <Photo src={profileImg}/>
-                <Name>{nickName}</Name>
+                <Photo src={img}/>
+                <Name>{name}</Name>
+                {/*<Photo src={profileImg}/>*/}
+                {/*<Name>{nickName}</Name>*/}
             </User>
         </Frame>
     )
@@ -57,18 +63,21 @@ function Profile() {
 const Frame = styled.div`
   width: 100%;
   height: 86%;
+  //border: 1px solid blue;
 `;
 
 const User = styled.div`
+  width: 100%;
+  height: 10%;
   display: flex;
-  border-bottom: 1px solid black;
-  padding: 20px;
+  border: 1px solid rgb(222, 222, 222);
 `;
 
 const Photo = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 90px;
+  width: 10%;
+  height: 100%;
+  margin: 0 20px;
+  border-radius: 30px;
 `;
 
 const Name = styled.div`
