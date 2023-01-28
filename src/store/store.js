@@ -5,15 +5,33 @@ let isLogin = createSlice({
     name: "isLogin",
     initialState: {isLogin: false},
     reducers: {
-        changeIsLogin(state, action) {
+        setIsLogin(state, action) {
             state.isLogin = action.payload;
         }
     }
 })
-export let {changeIsLogin} = isLogin.actions
+export let {setIsLogin} = isLogin.actions
+
+let profile = createSlice({
+    name: "profile",
+    initialState: {
+        name: "",
+        img: ""
+    },
+    reducers: {
+        setName(state, action) {
+            state.name = action.payload;
+        },
+        setImg(state, action) {
+            state.img = action.payload;
+        }
+    }
+})
+export let {setName, setImg} = profile.actions;
 
 export default configureStore({
     reducer: {
-        isLogin: isLogin.reducer
+        isLogin: isLogin.reducer,
+        profile: profile.reducer,
     }
 })
