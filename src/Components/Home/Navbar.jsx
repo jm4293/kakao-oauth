@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {BsPerson, BsFillChatFill} from "react-icons/bs"
+import {BsPerson, BsPersonFill, BsChat, BsFillChatFill} from "react-icons/bs"
 import {AiOutlineSearch} from "react-icons/ai"
 import {BiDotsHorizontalRounded} from "react-icons/bi"
 import {useNavigate} from "react-router-dom";
@@ -16,7 +16,7 @@ function Navbar() {
     return(
         <Frame>
             <Button onClick={() => isLogin.isLogin ? navigate('/profile') : alert("로그인 하세요")}><BsPerson/></Button>
-            <Button onClick={() => isLogin.isLogin ? navigate('/chatting') : alert("로그인 하세요")}><BsFillChatFill/></Button>
+            <Button onClick={() => isLogin.isLogin ? navigate('/chatting') : alert("로그인 하세요")}><BsChat/></Button>
             <Button><AiOutlineSearch/></Button>
             <Button onClick={() => isLogin.isLogin ? navigate('/logout') : alert("로그인 하세요")}><BiDotsHorizontalRounded/></Button>
         </Frame>

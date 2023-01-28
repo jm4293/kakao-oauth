@@ -15,7 +15,7 @@ function Logout() {
                     navigate('/')
                 })
                 .catch((error) => {
-                    console.log(error)
+                    console.log("logout error ", error)
                     alert("로그아웃 실패")
                 })
         }
